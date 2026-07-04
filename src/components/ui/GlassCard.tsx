@@ -27,8 +27,8 @@ export function GlassCard({
           ? { scale: 1.02, y: -2, transition: { duration: 0.3 } }
           : undefined
       }
-      className={`bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/[0.06] rounded-2xl shadow-sm p-6 md:p-8 transition-shadow duration-300 ${
-        hover ? "hover:shadow-md dark:hover:shadow-white/10" : ""
+      className={` rounded-2xl p-6 md:p-8 border border-black/[0.2] ${
+        hover ? "hover:shadow-md dark:hover:shadow-black/40" : ""
       } ${className}`}
     >
       {children}
