@@ -26,7 +26,7 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 dark:bg-black/50 backdrop-blur-xl border-b border-gray-200/50 dark:border-white/[0.06]"
+          ? "bg-white/80 dark:bg-black/50 backdrop-blur-xl border-b border-gray-200/50 dark:border-[#1a1d2e]"
           : "bg-transparent"
       }`}
     >
@@ -40,7 +40,7 @@ export function Navbar() {
           }}
           className="flex items-center gap-2.5"
         >
-          <div className="w-7 h-7 rounded-full overflow-hidden ring-1 ring-gray-200 dark:ring-white/[0.08] shrink-0">
+          <div className="w-7 h-7 rounded-full overflow-hidden ring-1 ring-gray-200 dark:ring-[#1a1d2e] shrink-0">
             <img
               src="/images/avatar.jpg"
               alt="Julian"
@@ -113,7 +113,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/90 dark:bg-black/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-white/[0.06] overflow-hidden"
+            className="md:hidden bg-white/90 dark:bg-black/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-[#1a1d2e] overflow-hidden"
           >
             <div className="px-6 pb-6 pt-2 flex flex-col gap-3">
               {navItems.map((item) => (
