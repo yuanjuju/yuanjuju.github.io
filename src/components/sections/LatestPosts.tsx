@@ -22,7 +22,7 @@ export function LatestPosts() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-            className="bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/[0.06] rounded-2xl shadow-sm p-6 md:p-8 text-center"
+            className=" rounded-2xl p-6 md:p-8 text-center border border-black/[0.2]"
           >
             <p className="text-muted text-base leading-relaxed">
               敬请期待～
