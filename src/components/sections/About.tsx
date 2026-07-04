@@ -54,7 +54,7 @@ export function About() {
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
             className="md:col-span-2 flex flex-col items-center md:items-start text-center md:text-left md:sticky md:top-24 md:self-start"
           >
-            <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden ring-2 ring-gray-200 dark:ring-white/[0.08] mb-5 shrink-0">
+            <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden ring-2 ring-gray-200 dark:ring-[#1a1d2e] mb-5 shrink-0">
               <img
                 src="/images/avatar.jpg"
                 alt="Julian"
