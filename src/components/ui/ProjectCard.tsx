@@ -30,7 +30,7 @@ export function ProjectCard({
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay }}
       whileHover={{ y: -3, transition: { duration: 0.3 } }}
-      className="group bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/[0.06] rounded-2xl shadow-sm p-6 transition-shadow duration-300 hover:shadow-md dark:hover:shadow-white/10"
+      className="group  rounded-2xl p-6 border border-black/[0.2] hover:shadow-md dark:hover:shadow-black/40"
     >
       <div className="flex items-start justify-between mb-3">
         <h3 className="text-base font-medium text-foreground">{title}</h3>
@@ -63,7 +63,7 @@ export function ProjectCard({
         {tags.map((tag) => (
           <span
             key={tag}
-            className="text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-white/[0.06] text-muted"
+            className="text-xs px-2 py-0.5 text-muted"
           >
             {tag}
           </span>
