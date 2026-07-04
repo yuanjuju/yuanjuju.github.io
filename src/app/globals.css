@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --foreground: #111111;
+  --background: #ffffff;
+  --muted: #666666;
+  --border: #e5e5e5;
+  --accent: #3b82f6;
+  --accent-soft: #3b82f620;
+}
+
+.dark {
+  --foreground: #fafafa;
+  --background: #0a0a0a;
+  --muted: #888888;
+  --border: #222222;
+  --accent: #3b82f6;
+  --accent-soft: #3b82f615;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: white;
+}
