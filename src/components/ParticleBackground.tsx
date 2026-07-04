@@ -71,8 +71,8 @@ export function ParticleBackground() {
       gradientOffset += 0.001;
 
       // Solid background with subtle color shift (much cheaper than radial gradient each frame)
-      const bgBrightness = isDark ? 8 : 245;
-      const bgBlue = isDark ? 18 + Math.sin(gradientOffset) * 5 : 250;
+      const bgBrightness = isDark ? 13 : 245;
+      const bgBlue = isDark ? 23 + Math.sin(gradientOffset) * 3 : 250;
       ctx.fillStyle = `rgb(${bgBrightness}, ${bgBrightness}, ${bgBlue})`;
       ctx.fillRect(0, 0, w, h);
 
