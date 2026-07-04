@@ -57,7 +57,7 @@ export function Timeline() {
 
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-[19px] md:left-1/2 md:-translate-x-px top-2 bottom-2 w-px bg-gray-200 dark:bg-white/[0.08]" />
+          <div className="absolute left-[19px] md:left-1/2 md:-translate-x-px top-2 bottom-2 w-px bg-gray-200 dark:bg-[#1a1d2e]" />
 
           <div className="space-y-12">
             {events.map((event, i) => (
@@ -76,7 +76,7 @@ export function Timeline() {
 
                 {/* Content */}
                 <div className={`ml-10 md:ml-0 md:w-[calc(50%-40px)] ${i % 2 === 0 ? "md:pr-0 md:text-right" : "md:pl-0"}`}>
-                  <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/[0.06] rounded-2xl shadow-sm p-5 md:p-6">
+                  <div className=" rounded-2xl p-5 md:p-6 border border-black/[0.2]">
                     <span className="text-xs font-mono text-blue-500/70 mb-2 block">
                       {event.date}
                     </span>
