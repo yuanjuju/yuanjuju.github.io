@@ -26,7 +26,7 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 dark:bg-black/50 backdrop-blur-xl border-b border-gray-200/50 dark:border-[#1a1d2e]"
+          ? "bg-[#0f1117]"
           : "bg-transparent"
       }`}
     >
