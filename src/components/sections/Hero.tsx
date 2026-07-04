@@ -18,7 +18,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-8"
         >
-          <div className="w-28 h-28 md:w-32 md:h-32 mx-auto rounded-full overflow-hidden ring-2 ring-gray-200 dark:ring-white/[0.08]">
+          <div className="w-28 h-28 md:w-32 md:h-32 mx-auto rounded-full overflow-hidden ring-2 ring-gray-200 dark:ring-[#1a1d2e]">
             <img
               src="/images/avatar.jpg"
               alt="Julian"
