@@ -42,7 +42,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-lg md:text-xl text-muted max-w-xl mx-auto leading-relaxed mb-8"
         >
-          天天开心
+          我的生活绕着彩色碎片东升西落
         </motion.p>
 
         <motion.div

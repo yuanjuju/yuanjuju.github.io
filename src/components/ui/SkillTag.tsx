@@ -32,7 +32,7 @@ export function SkillTag({ name, level = 3, delay = 0 }: SkillTagProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay }}
       whileHover={{ scale: 1.08, y: -1 }}
-      className={`inline-block rounded-full 
+      className={`inline-block rounded-full
         text-muted hover:text-foreground
         hover:bg-blue-50/50 dark:hover:bg-blue-500/5
         transition-colors duration-200 cursor-default

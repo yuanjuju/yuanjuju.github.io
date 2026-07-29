@@ -5,6 +5,20 @@ import { ProjectCard } from "@/components/ui/ProjectCard";
 
 const projects = [
   {
+    title: "Agentic Workspace｜企业智能体协作与治理平台",
+    description:
+      "面向营销、销售和内容团队的 AI Agent 协作平台，覆盖线索、会话、商机、内容生成与人工审核。以“用 Agent 构建 Agent”为核心，完成从自然语言需求到自动化测试、人工验收和云端预生产验证的开发闭环。",
+    tags: [
+      "Agentic Workflow",
+      "Vibe Coding",
+      "Next.js",
+      "NestJS",
+      "PostgreSQL",
+      "Docker",
+    ],
+    github: "https://github.com/yuanjuju",
+  },
+  {
     title: "高光谱图像分类",
     description:
       "软件工程理论项目，基于 Python 实现高光谱图像分类算法，探索遥感影像的深度学习分析方法。",
