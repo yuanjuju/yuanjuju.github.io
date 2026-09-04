@@ -4,7 +4,6 @@ import { Metadata } from "next";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import remarkRehype from "remark-rehype";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -32,31 +31,37 @@ export default async function PostPage({ params }: Props) {
 
   if (!post) notFound();
 
+  const categoryLabel =
+    post.meta.category === "life" ? "日常" : "博客";
+
   return (
-    <article className="pt-32 pb-24">
-      <div className="max-w-5xl mx-auto px-6 md:px-10 lg:px-12 max-w-3xl">
+    <article className="pt-28 pb-24 md:pt-32">
+      <div className="mx-auto max-w-4xl px-6 md:px-10 lg:px-12">
         <Link
           href="/#posts"
-          className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground transition-colors mb-10"
+          className="mb-10 inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--article-surface)] px-4 py-2.5 text-base font-medium text-[var(--article-muted)] shadow-sm transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--article-heading)]"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
             <line x1="19" y1="12" x2="5" y2="12" />
             <polyline points="12 19 5 12 12 5" />
           </svg>
           Back to writing
         </Link>
 
-        <header className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-medium tracking-tight text-foreground mb-4">
+        <header className="mb-10 md:mb-12">
+          <p className="mb-4 font-mono text-xs tracking-[0.16em] text-[var(--accent)]">
+            {categoryLabel}
+          </p>
+          <h1 className="mb-5 text-3xl font-medium leading-tight tracking-tight text-[var(--article-heading)] md:text-5xl">
             {post.meta.title}
           </h1>
-          <div className="flex items-center gap-4 text-sm text-muted">
-            <time>{post.meta.date}</time>
+          <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--article-muted)]">
+            <time dateTime={post.meta.date}>{post.meta.date}</time>
             {post.meta.tags.length > 0 && (
               <div className="flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-muted/30" />
+                <span className="h-1 w-1 rounded-full bg-[var(--article-muted)] opacity-50" />
                 {post.meta.tags.map((tag) => (
-                  <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-white/[0.06]">
+                  <span key={tag} className="rounded-full bg-[var(--article-pill)] px-2.5 py-1 text-xs text-[var(--article-muted)]">
                     {tag}
                   </span>
                 ))}
@@ -65,16 +70,7 @@ export default async function PostPage({ params }: Props) {
           </div>
         </header>
 
-        <div className="prose prose-sm dark:prose-invert max-w-none
-          prose-p:text-muted prose-p:leading-relaxed
-          prose-headings:text-foreground prose-headings:font-medium
-          prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline
-          prose-code:font-mono prose-code:text-sm prose-code:bg-gray-100 dark:prose-code:bg-white/[0.06] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md
-          prose-pre:bg-gray-50 dark:prose-pre:bg-white/[0.03] prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-white/[0.06]
-          prose-strong:text-foreground
-          prose-blockquote:border-blue-500/30 prose-blockquote:text-muted
-          prose-hr:border-gray-200 dark:prose-hr:border-white/[0.06]
-        ">
+        <div className="article-prose prose max-w-none rounded-3xl border border-[var(--border)] bg-[var(--article-surface)] px-6 py-8 shadow-sm md:px-10 md:py-10">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {post.content}
           </ReactMarkdown>
