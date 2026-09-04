@@ -4,12 +4,19 @@ import matter from "gray-matter";
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
 
+export type PostCategory = "tech" | "life";
+
 export interface PostMeta {
   slug: string;
   title: string;
   date: string;
   excerpt: string;
   tags: string[];
+  category: PostCategory;
+}
+
+function getPostCategory(category: unknown): PostCategory {
+  return category === "life" ? "life" : "tech";
 }
 
 export function getAllPosts(): PostMeta[] {
@@ -32,6 +39,7 @@ export function getAllPosts(): PostMeta[] {
         date: data.date ? new Date(data.date).toISOString().split("T")[0] : "",
         excerpt: data.excerpt || "",
         tags: data.tags || [],
+        category: getPostCategory(data.category),
       } as PostMeta;
     })
     .sort((a, b) => (a.date > b.date ? -1 : 1));
@@ -60,6 +68,7 @@ export function getPostBySlug(slug: string): {
           : "",
         excerpt: data.excerpt || "",
         tags: data.tags || [],
+        category: getPostCategory(data.category),
       },
     };
   } catch {
