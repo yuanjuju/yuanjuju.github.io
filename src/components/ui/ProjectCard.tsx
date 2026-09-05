@@ -30,7 +30,7 @@ export function ProjectCard({
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay }}
       whileHover={{ y: -3, transition: { duration: 0.3 } }}
-      className="group  rounded-2xl p-6 border border-black/[0.2] hover:shadow-md dark:hover:shadow-black/40"
+      className="theme-card theme-card-interactive group min-w-0 rounded-2xl p-6"
     >
       <div className="flex items-start justify-between mb-3">
         <h3 className="text-base font-medium text-foreground">{title}</h3>
@@ -39,7 +39,7 @@ export function ProjectCard({
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted hover:text-foreground transition-colors ml-3 shrink-0"
+            className="flex h-11 w-11 items-center justify-center rounded-full text-muted hover:bg-accent-soft hover:text-accent transition-colors ml-3 -mt-2 -mr-2 shrink-0"
             aria-label={`${title} on ${repoLabel}`}
           >
             {github ? (
@@ -63,7 +63,7 @@ export function ProjectCard({
         {tags.map((tag) => (
           <span
             key={tag}
-            className="text-xs px-2 py-0.5 text-muted"
+            className="rounded-md bg-tag text-xs px-2 py-1 text-tag-text"
           >
             {tag}
           </span>

@@ -50,7 +50,7 @@ export function Projects() {
             Projects
           </h2>
           <p className="text-muted text-base leading-relaxed max-w-2xl">
-            Things IThings I've built for fun, for class, and for the sake of learning.apos;ve built for fun, for class, and for the sake of learning.
+            Things I&apos;ve built for fun, for class, and for the sake of learning.
           </p>
         </div>
 

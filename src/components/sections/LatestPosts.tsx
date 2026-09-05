@@ -76,7 +76,7 @@ export function LatestPosts({ posts }: { posts: PostMeta[] }) {
                     <article key={post.slug}>
                       <Link
                         href={`/posts/${post.slug}`}
-                        className="group grid gap-3 py-6 first:pt-0 last:pb-0 sm:grid-cols-[1fr_auto] sm:gap-8"
+                        className="group -mx-3 grid gap-3 rounded-xl px-3 py-4 transition-colors hover:bg-surface-hover focus-visible:bg-surface-hover sm:grid-cols-[1fr_auto] sm:gap-8"
                       >
                         <div>
                           <h4 className="text-base font-medium leading-snug text-foreground transition-colors group-hover:text-[var(--accent)] md:text-lg">

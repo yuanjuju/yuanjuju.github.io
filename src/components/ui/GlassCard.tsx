@@ -27,8 +27,8 @@ export function GlassCard({
           ? { scale: 1.02, y: -2, transition: { duration: 0.3 } }
           : undefined
       }
-      className={` rounded-2xl p-6 md:p-8 border border-black/[0.2] ${
-        hover ? "hover:shadow-md dark:hover:shadow-black/40" : ""
+      className={`theme-card rounded-2xl p-6 md:p-8 ${
+        hover ? "theme-card-interactive" : ""
       } ${className}`}
     >
       {children}

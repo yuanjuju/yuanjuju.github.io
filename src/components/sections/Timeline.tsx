@@ -54,7 +54,7 @@ export function Timeline() {
 
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-[19px] md:left-1/2 md:-translate-x-px top-2 bottom-2 w-px bg-gray-200 dark:bg-[#1a1d2e]" />
+          <div className="absolute left-[19px] md:left-1/2 md:-translate-x-px top-2 bottom-2 w-px bg-border" />
 
           <div className="space-y-12">
             {events.map((event, i) => (
@@ -64,17 +64,17 @@ export function Timeline() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-                className={`relative flex flex-col md:flex-row gap-6 md:gap-0 ${
+                className={`relative flex flex-col md:flex-row md:justify-between gap-6 md:gap-0 ${
                   i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
                 {/* Dot */}
-                <div className="absolute left-[12px] md:left-1/2 md:-translate-x-1/2 top-1.5 w-[15px] h-[15px] rounded-full border-2 border-blue-500/50 bg-background z-10" />
+                <div className="absolute left-[12px] md:left-1/2 md:-translate-x-1/2 top-1.5 w-[15px] h-[15px] rounded-full border-2 border-accent bg-background z-10" />
 
                 {/* Content */}
                 <div className={`ml-10 md:ml-0 md:w-[calc(50%-40px)] ${i % 2 === 0 ? "md:pr-0 md:text-right" : "md:pl-0"}`}>
-                  <div className=" rounded-2xl p-5 md:p-6 border border-black/[0.2]">
-                    <span className="text-xs font-mono text-blue-500/70 mb-2 block">
+                  <div className="theme-card rounded-2xl p-5 md:p-6">
+                    <span className="text-xs font-mono text-accent mb-2 block">
                       {event.date}
                     </span>
                     <h3 className="text-base font-medium text-foreground mb-2">

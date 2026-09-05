@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navItems = [
@@ -13,34 +14,26 @@ const navItems = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0f1117]"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-nav backdrop-blur-xl transition-colors"
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && mobileOpen) {
+          setMobileOpen(false);
+          menuButtonRef.current?.focus();
+        }
+      }}
     >
-      <nav className="max-w-5xl mx-auto px-6 md:px-10 lg:px-12 h-16 flex items-center justify-between">
-        <button
-          onClick={() => {
-            const el = document.querySelector("#hero");
-            if (el) {
-              el.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
-          className="flex items-center gap-2.5"
+      <nav aria-label="主导航" className="max-w-5xl mx-auto px-6 md:px-10 lg:px-12 h-16 flex items-center justify-between">
+        <Link
+          href="/#hero"
+          onClick={() => setMobileOpen(false)}
+          className="flex min-h-11 items-center gap-2.5 rounded-lg"
         >
-          <div className="w-7 h-7 rounded-full overflow-hidden ring-1 ring-gray-200 dark:ring-[#1a1d2e] shrink-0">
+          <div className="w-7 h-7 rounded-full overflow-hidden ring-1 ring-border shrink-0">
             <img
               src="/images/avatar.jpg"
               alt="Julian"
@@ -50,24 +43,17 @@ export function Navbar() {
           <span className="text-sm font-medium tracking-tight text-foreground">
             Julian
           </span>
-        </button>
+        </Link>
 
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <button
+            <Link
               key={item.href}
-              onClick={() => {
-                const el = document.querySelector(item.href);
-                if (el) {
-                  const offset = 80;
-                  const top = el.getBoundingClientRect().top + window.scrollY - offset;
-                  window.scrollTo({ top, behavior: "smooth" });
-                }
-              }}
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
+              href={`/${item.href}`}
+              className="flex min-h-11 items-center rounded text-sm text-muted hover:text-accent transition-colors duration-200"
             >
               {item.label}
-            </button>
+            </Link>
           ))}
           <ThemeToggle />
         </div>
@@ -75,11 +61,16 @@ export function Navbar() {
         <div className="flex md:hidden items-center gap-3">
           <ThemeToggle />
           <button
+            ref={menuButtonRef}
+            type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="w-5 h-5 flex items-center justify-center text-muted"
-            aria-label="Menu"
+            className="flex h-11 w-11 items-center justify-center rounded-full text-muted hover:bg-accent-soft hover:text-accent transition-colors"
+            aria-label={mobileOpen ? "关闭导航菜单" : "打开导航菜单"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             <svg
+              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="18"
               height="18"
@@ -110,28 +101,22 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/90 dark:bg-black/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-[#1a1d2e] overflow-hidden"
+            className="md:hidden border-t border-border bg-surface overflow-hidden"
           >
             <div className="px-6 pb-6 pt-2 flex flex-col gap-3">
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.href}
-                  onClick={() => {
-                    setMobileOpen(false);
-                    const el = document.querySelector(item.href);
-                    if (el) {
-                      const offset = 80;
-                      const top = el.getBoundingClientRect().top + window.scrollY - offset;
-                      window.scrollTo({ top, behavior: "smooth" });
-                    }
-                  }}
-                  className="text-sm text-muted hover:text-foreground transition-colors py-1 text-left"
+                  href={`/${item.href}`}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex min-h-11 items-center rounded-lg px-3 text-sm text-muted hover:bg-accent-soft hover:text-accent transition-colors"
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
             </div>
           </motion.div>

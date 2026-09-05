@@ -54,7 +54,7 @@ export function About() {
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
             className="md:col-span-2 flex flex-col items-center md:items-start text-center md:text-left md:sticky md:top-24 md:self-start"
           >
-            <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden ring-2 ring-gray-200 dark:ring-[#1a1d2e] mb-5 shrink-0">
+            <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden ring-2 ring-border shadow-[var(--card-shadow)] mb-5 shrink-0">
               <img
                 src="/images/avatar.jpg"
                 alt="Julian"
@@ -70,7 +70,7 @@ export function About() {
                 href="https://github.com/yuanjuju"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted hover:text-blue-400 transition-colors"
+                className="flex h-11 w-11 items-center justify-center rounded-full text-muted hover:bg-accent-soft hover:text-accent transition-colors"
                 aria-label="GitHub"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -80,7 +80,7 @@ export function About() {
               </a>
               <a
                 href="mailto:hello@jinian.dev"
-                className="text-muted hover:text-blue-400 transition-colors"
+                className="flex h-11 w-11 items-center justify-center rounded-full text-muted hover:bg-accent-soft hover:text-accent transition-colors"
                 aria-label="Email"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -131,7 +131,7 @@ export function About() {
 
             <div className="mb-14">
               <div className="mb-8">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:gap-4">
                   <div>
                     <h4 className="text-base font-medium text-foreground">Ocean University of China</h4>
                     <p className="text-sm text-muted mt-0.5">M.S. in Computer Science and Technology</p>
@@ -140,7 +140,7 @@ export function About() {
                 </div>
               </div>
               <div>
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:gap-4">
                   <div>
                     <h4 className="text-base font-medium text-foreground">Ocean University of China</h4>
                     <p className="text-sm text-muted mt-0.5">B.S. in Software Engineering</p>
