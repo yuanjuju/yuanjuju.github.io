@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -58,7 +59,7 @@ export default async function PostPage({ params }: Props) {
           <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--article-muted)]">
             <time dateTime={post.meta.date}>{post.meta.date}</time>
             {post.meta.tags.length > 0 && (
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="h-1 w-1 rounded-full bg-[var(--article-muted)] opacity-50" />
                 {post.meta.tags.map((tag) => (
                   <span key={tag} className="rounded-full bg-[var(--article-pill)] px-2.5 py-1 text-xs text-[var(--article-muted)]">
@@ -70,8 +71,21 @@ export default async function PostPage({ params }: Props) {
           </div>
         </header>
 
-        <div className="article-prose prose max-w-none rounded-3xl border border-[var(--border)] bg-[var(--article-surface)] px-6 py-8 shadow-sm md:px-10 md:py-10">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <div className="article-prose prose max-w-none rounded-3xl border border-border bg-[var(--article-surface)] px-4 py-6 shadow-[var(--card-shadow)] sm:px-6 sm:py-8 md:px-10 md:py-10">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeHighlight]}
+            components={{
+              pre: ({ children }) => (
+                <pre tabIndex={0} aria-label="代码示例">{children}</pre>
+              ),
+              table: ({ children }) => (
+                <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="文章表格">
+                  <table>{children}</table>
+                </div>
+              ),
+            }}
+          >
             {post.content}
           </ReactMarkdown>
         </div>
