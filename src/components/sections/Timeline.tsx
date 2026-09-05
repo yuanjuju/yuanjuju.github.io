@@ -73,7 +73,7 @@ export function Timeline() {
 
                 {/* Content */}
                 <div className={`ml-10 md:ml-0 md:w-[calc(50%-40px)] ${i % 2 === 0 ? "md:pr-0 md:text-right" : "md:pl-0"}`}>
-                  <div className="theme-card rounded-2xl p-5 md:p-6">
+                  <div className="py-1">
                     <span className="text-xs font-mono text-accent mb-2 block">
                       {event.date}
                     </span>
