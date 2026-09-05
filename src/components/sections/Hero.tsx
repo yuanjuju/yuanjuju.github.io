@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ParticleBackground } from "@/components/ParticleBackground";
 
 export function Hero() {
   return (
@@ -9,8 +8,6 @@ export function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <ParticleBackground />
-
       <div className="max-w-5xl mx-auto px-6 md:px-10 lg:px-12 relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -18,7 +15,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-8"
         >
-          <div className="w-28 h-28 md:w-32 md:h-32 mx-auto rounded-full overflow-hidden ring-2 ring-gray-200 dark:ring-[#1a1d2e]">
+          <div className="w-28 h-28 md:w-32 md:h-32 mx-auto rounded-full overflow-hidden ring-2 ring-border shadow-[var(--card-shadow)]">
             <img
               src="/images/avatar.jpg"
               alt="Julian"
@@ -55,7 +52,7 @@ export function Hero() {
             href="https://github.com/yuanjuju"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted hover:text-blue-400 transition-colors duration-200"
+            className="flex h-11 w-11 items-center justify-center rounded-full text-muted hover:bg-accent-soft hover:text-accent transition-colors duration-200"
             aria-label="GitHub"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -65,7 +62,7 @@ export function Hero() {
           </a>
           <a
             href="mailto:hello@jinian.dev"
-            className="text-muted hover:text-blue-400 transition-colors duration-200"
+            className="flex h-11 w-11 items-center justify-center rounded-full text-muted hover:bg-accent-soft hover:text-accent transition-colors duration-200"
             aria-label="Email"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

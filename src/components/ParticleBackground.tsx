@@ -43,14 +43,22 @@ export function ParticleBackground() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let gradientOffset = 0;
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let particleColor = "";
+    let particleOpacity = 1;
+
+    const readPalette = () => {
+      const styles = getComputedStyle(document.documentElement);
+      particleColor = styles.getPropertyValue("--particle-rgb").trim();
+      particleOpacity = Number(styles.getPropertyValue("--particle-opacity"));
+    };
+
+    readPalette();
 
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      if (particlesRef.current.length === 0) {
-        initParticles(canvas.width, canvas.height);
-      }
+      initParticles(canvas.width, canvas.height);
     };
 
     const onMouse = (e: MouseEvent) => {
@@ -58,23 +66,15 @@ export function ParticleBackground() {
     };
 
     resize();
-    window.addEventListener("resize", resize);
-    window.addEventListener("mousemove", onMouse);
 
     const animate = () => {
       if (!ctx || !canvas) return;
 
       const w = canvas.width;
       const h = canvas.height;
-      const isDark = document.documentElement.classList.contains("dark");
       timeRef.current += 0.008;
-      gradientOffset += 0.001;
-
-      // Solid background with subtle color shift (much cheaper than radial gradient each frame)
-      const bgBrightness = isDark ? 13 : 245;
-      const bgBlue = isDark ? 23 + Math.sin(gradientOffset) * 3 : 250;
-      ctx.fillStyle = `rgb(${bgBrightness}, ${bgBrightness}, ${bgBlue})`;
-      ctx.fillRect(0, 0, w, h);
+      // The page owns its background; the canvas only draws themed decoration.
+      ctx.clearRect(0, 0, w, h);
 
       const particles = particlesRef.current;
 
@@ -96,7 +96,7 @@ export function ParticleBackground() {
         const dx = mouseRef.current.x - p.x;
         const dy = mouseRef.current.y - p.y;
         const distSq = dx * dx + dy * dy;
-        if (distSq < 40000) {
+        if (distSq > 0 && distSq < 40000) {
           const dist = Math.sqrt(distSq);
           const force = (200 - dist) / 200;
           p.vx -= (dx / dist) * force * 0.03;
@@ -112,7 +112,7 @@ export function ParticleBackground() {
         // Simple dot (no glow gradients)
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(59, 130, 246, ${p.alpha})`;
+        ctx.fillStyle = `rgba(${particleColor}, ${p.alpha * particleOpacity})`;
         ctx.fill();
       }
 
@@ -121,27 +121,47 @@ export function ParticleBackground() {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          if (dx > 120 || dy > 120) continue; // Quick reject before sqrt
+          if (Math.abs(dx) > 120 || Math.abs(dy) > 120) continue;
           const distSq = dx * dx + dy * dy;
           if (distSq < 14400) {
-            const alpha = 0.06 * (1 - Math.sqrt(distSq) / 120);
+            const alpha = 0.16 * particleOpacity * (1 - Math.sqrt(distSq) / 120);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+            ctx.strokeStyle = `rgba(${particleColor}, ${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
       }
 
-      animationRef.current = requestAnimationFrame(animate);
+      if (!motionPreference.matches) {
+        animationRef.current = requestAnimationFrame(animate);
+      }
     };
 
+    const redraw = () => {
+      cancelAnimationFrame(animationRef.current);
+      animate();
+    };
+    const onResize = () => {
+      resize();
+      redraw();
+    };
+    const observer = new MutationObserver(() => {
+      readPalette();
+      redraw();
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    motionPreference.addEventListener("change", redraw);
+    window.addEventListener("resize", onResize);
+    window.addEventListener("mousemove", onMouse, { passive: true });
     animate();
 
     return () => {
-      window.removeEventListener("resize", resize);
+      observer.disconnect();
+      motionPreference.removeEventListener("change", redraw);
+      window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouse);
       cancelAnimationFrame(animationRef.current);
     };
