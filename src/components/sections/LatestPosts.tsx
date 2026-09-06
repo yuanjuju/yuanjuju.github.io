@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import type { PostCategory, PostMeta } from "@/lib/posts";
+import { useLocale } from "@/components/LocaleProvider";
+import { localizePath, categoryLabels } from "@/lib/i18n";
+import { english } from "@/lib/english";
 
 const categories: Array<{
   id: PostCategory;
@@ -27,6 +30,7 @@ function formatDate(date: string) {
 }
 
 export function LatestPosts({ posts }: { posts: PostMeta[] }) {
+  const locale = useLocale();
   return (
     <SectionWrapper id="posts" className="py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-6 md:px-10 lg:px-12">
@@ -35,7 +39,7 @@ export function LatestPosts({ posts }: { posts: PostMeta[] }) {
             Writing
           </h2>
           <p className="text-muted text-base leading-relaxed max-w-2xl">
-            写些技术，也记些生活。
+            {locale === "en" ? english.writing : "写些技术，也记些生活。"}
           </p>
         </div>
 
@@ -67,7 +71,7 @@ export function LatestPosts({ posts }: { posts: PostMeta[] }) {
                     id={`${category.id}-posts-heading`}
                     className="text-xl font-medium tracking-tight text-foreground"
                   >
-                    {category.label}
+                    {categoryLabels[locale][category.id]}
                   </h3>
                 </header>
 
@@ -75,7 +79,7 @@ export function LatestPosts({ posts }: { posts: PostMeta[] }) {
                   {categoryPosts.map((post, postIndex) => (
                     <article key={post.slug}>
                       <Link
-                        href={`/posts/${post.slug}`}
+                        href={localizePath(`/posts/${post.slug}`, locale)}
                         className="group -mx-3 grid gap-3 rounded-xl px-3 py-4 transition-colors hover:bg-surface-hover focus-visible:bg-surface-hover sm:grid-cols-[1fr_auto] sm:gap-8"
                       >
                         <div>

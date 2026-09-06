@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLocale } from "@/components/LocaleProvider";
+import { english } from "@/lib/english";
 
 export function Hero() {
+  const isEnglish = useLocale() === "en";
   return (
     <section
       id="hero"
@@ -39,7 +42,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-lg md:text-xl text-muted max-w-xl mx-auto leading-relaxed mb-8"
         >
-          我的生活绕着彩色碎片东升西落
+          {isEnglish ? english.hero : "我的生活绕着彩色碎片东升西落"}
         </motion.p>
 
         <motion.div

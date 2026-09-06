@@ -5,12 +5,12 @@ import { getAllPosts, getPostBySlug } from "@/lib/posts";
 interface Props { params: Promise<{ slug: string }> }
 
 export function generateStaticParams() {
-  return getAllPosts().map(({ slug }) => ({ slug }));
+  return getAllPosts("en").map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug, "en");
   if (!post) return { title: "Not Found" };
   return {
     title: `${post.meta.title} — Jinian`,
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function OriginalPost({ params }: Props) {
+export default async function EnglishPost({ params }: Props) {
   const { slug } = await params;
-  return <PostPage slug={slug} />;
+  return <PostPage slug={slug} locale="en" />;
 }

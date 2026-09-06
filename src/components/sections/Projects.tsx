@@ -2,6 +2,8 @@
 
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { ProjectCard } from "@/components/ui/ProjectCard";
+import { useLocale } from "@/components/LocaleProvider";
+import { english } from "@/lib/english";
 
 const projects = [
   {
@@ -42,6 +44,7 @@ const projects = [
 ];
 
 export function Projects() {
+  const isEnglish = useLocale() === "en";
   return (
     <SectionWrapper id="projects" className="py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-6 md:px-10 lg:px-12">
@@ -56,7 +59,7 @@ export function Projects() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
-            <ProjectCard key={project.title} {...project} delay={i * 0.1} />
+            <ProjectCard key={project.title} {...project} {...(isEnglish ? english.projects[i] : {})} delay={i * 0.1} />
           ))}
         </div>
       </div>

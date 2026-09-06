@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
+import { useLocale } from "@/components/LocaleProvider";
+import { english } from "@/lib/english";
 
 interface TimelineEvent {
   date: string;
@@ -40,6 +42,7 @@ const events: TimelineEvent[] = [
 ];
 
 export function Timeline() {
+  const isEnglish = useLocale() === "en";
   return (
     <SectionWrapper id="timeline" className="py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-6 md:px-10 lg:px-12">
@@ -78,10 +81,10 @@ export function Timeline() {
                       {event.date}
                     </span>
                     <h3 className="text-base font-medium text-foreground mb-2">
-                      {event.title}
+                      {isEnglish ? english.timeline[i].title : event.title}
                     </h3>
                     <p className="text-sm text-muted leading-relaxed">
-                      {event.description}
+                      {isEnglish ? english.timeline[i].description : event.description}
                     </p>
                   </div>
                 </div>

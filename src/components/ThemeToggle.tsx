@@ -2,25 +2,27 @@
 
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
+import { useLocale } from "@/components/LocaleProvider";
 
 export function ThemeToggle() {
+  const isEnglish = useLocale() === "en";
   const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <motion.button
       type="button"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-muted transition-colors hover:border-accent hover:bg-accent-soft hover:text-accent"
+      className="group relative flex h-11 w-11 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted transition-colors duration-200 hover:text-accent"
       whileTap={{ scale: 0.9 }}
-      title="切换日间 / 夜间模式"
+      title={isEnglish ? "Switch light / dark mode" : "切换日间 / 夜间模式"}
     >
-      <span className="hidden dark:inline">
-        <span className="sr-only">切换到日间模式</span>
+      <span className="hidden transition-transform duration-300 motion-safe:group-hover:rotate-45 motion-safe:group-hover:scale-110 dark:inline">
+        <span className="sr-only">{isEnglish ? "Switch to light mode" : "切换到日间模式"}</span>
         <svg
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -39,13 +41,13 @@ export function ThemeToggle() {
           <path d="m19.07 4.93-1.41 1.41" />
         </svg>
       </span>
-      <span className="dark:hidden">
-        <span className="sr-only">切换到夜间模式</span>
+      <span className="transition-transform duration-300 motion-safe:group-hover:-rotate-12 motion-safe:group-hover:scale-110 dark:hidden">
+        <span className="sr-only">{isEnglish ? "Switch to dark mode" : "切换到夜间模式"}</span>
         <svg
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

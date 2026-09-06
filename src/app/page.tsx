@@ -1,20 +1,10 @@
-import { Hero } from "@/components/sections/Hero";
-import { About } from "@/components/sections/About";
-import { Projects } from "@/components/sections/Projects";
-import { Timeline } from "@/components/sections/Timeline";
-import { LatestPosts } from "@/components/sections/LatestPosts";
-import { getAllPosts } from "@/lib/posts";
+import { HomePage } from "@/components/HomePage";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { languages: { en: "https://yuanjuju.github.io/en/", "zh-CN": "https://yuanjuju.github.io/" } },
+};
 
 export default function Home() {
-  const posts = getAllPosts();
-
-  return (
-    <>
-      <Hero />
-      <About />
-      <Projects />
-      <Timeline />
-      <LatestPosts posts={posts} />
-    </>
-  );
+  return <HomePage />;
 }

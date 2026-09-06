@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { SkillTag } from "@/components/ui/SkillTag";
+import { useLocale } from "@/components/LocaleProvider";
+import { english } from "@/lib/english";
 
 const skillCategories = [
   {
@@ -42,6 +44,7 @@ const skillCategories = [
 ];
 
 export function About() {
+  const isEnglish = useLocale() === "en";
   return (
     <SectionWrapper id="about" className="py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-6 md:px-10 lg:px-12">
@@ -95,7 +98,7 @@ export function About() {
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
-              <span>山东青岛</span>
+              <span>{isEnglish ? english.location : "山东青岛"}</span>
             </div>
           </motion.div>
 
@@ -112,16 +115,16 @@ export function About() {
             </h2>
             <div className="text-muted text-base leading-relaxed mb-12 space-y-4">
               <p>
-                我目前是一名中国海洋大学在读一年级硕士生，我的研究方向是计算机视觉，主要关注于遥感方法。我个人比较喜欢用 Vibe Coding 倒腾一些小工具来简化并且提高学习效率，之后会不定时更新自己的博客，敬请期待～
+                {isEnglish ? english.about[0] : "我目前是一名中国海洋大学在读一年级硕士生，我的研究方向是计算机视觉，主要关注于遥感方法。我个人比较喜欢用 Vibe Coding 倒腾一些小工具来简化并且提高学习效率，之后会不定时更新自己的博客，敬请期待～"}
               </p>
               <p>
-                学习之余，我比较喜欢旅行，可以特种兵式也可以松弛式，这些年陆陆续续去过了很多很多城市，都给我留下了很深刻的印象，期待中的下一站：天津，杭州。比起标准的标准答案，更喜欢在未知的旅途中盲抽人生盲盒。
+                {isEnglish ? english.about[1] : "学习之余，我比较喜欢旅行，可以特种兵式也可以松弛式，这些年陆陆续续去过了很多很多城市，都给我留下了很深刻的印象，期待中的下一站：天津，杭州。比起标准的标准答案，更喜欢在未知的旅途中盲抽人生盲盒。"}
               </p>
               <p>
-                运动方面，我比较喜欢打羽毛球，目前还属于中羽二级的水平，如果有感兴趣的小伙伴，可以一起切磋切磋。
+                {isEnglish ? english.about[2] : "运动方面，我比较喜欢打羽毛球，目前还属于中羽二级的水平，如果有感兴趣的小伙伴，可以一起切磋切磋。"}
               </p>
               <p>
-                我坚信音符是比文字更诚实的语言。我喜欢孙燕姿的嘴硬三部曲，《泪眼成诗》，《天黑黑》，喜欢周董的《轨迹》，《园游会》，《彩虹》，《发如雪》，喜欢陈奕迅的《好久不见》，《富士山下》等等等等，希望遇到同意热爱音乐的朋友。
+                {isEnglish ? english.about[3] : "我坚信音符是比文字更诚实的语言。我喜欢孙燕姿的嘴硬三部曲，《泪眼成诗》，《天黑黑》，喜欢周董的《轨迹》，《园游会》，《彩虹》，《发如雪》，喜欢陈奕迅的《好久不见》，《富士山下》等等等等，希望遇到同意热爱音乐的朋友。"}
               </p>
             </div>
 
