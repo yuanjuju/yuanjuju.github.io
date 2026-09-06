@@ -82,9 +82,10 @@ export function About() {
                 </svg>
               </a>
               <a
-                href="mailto:hello@jinian.dev"
+                href="mailto:13548727058@163.com"
                 className="flex h-11 w-11 items-center justify-center rounded-full text-muted hover:bg-accent-soft hover:text-accent transition-colors"
                 aria-label="Email"
+                title="13548727058@163.com"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="4" width="20" height="16" rx="2" />
