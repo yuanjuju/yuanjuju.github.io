@@ -30,10 +30,6 @@ The dense configuration I trained has about **63.91M parameters**: a hidden size
 
 Each block contains attention and a feed-forward network. This version defaults to eight Query heads and four Key/Value heads; Q and K use RoPE positional information, while causal attention prevents a position from seeing future tokens. RMSNorm, residual connections, and the feed-forward network complete the block. I found it easier to trace tensor shapes before trying to memorize equations: `[batch, seq]` IDs become `[batch, seq, hidden]` representations and eventually `[batch, seq, vocab]` logits. I made this concrete in a [CPU tensor-shape experiment](https://github.com/yuanjuju/minimind-learning/blob/main/learning/inspect_model_shapes.py), which runs a tiny randomly initialized model without downloading the trained weights.
 
-![MiniMind dense-model diagram showing embeddings, GQA, feed-forward layers, and output](/images/minimind-dense-structure.jpg)
-
-*Image source: the [original MiniMind repository](https://github.com/jingyaogong/minimind/blob/7a9137d2e90294df80ce9178b89e82657e19f5a7/images/LLM-structure.jpg), reused under its [Apache-2.0 license](/images/minimind-dense-structure-LICENSE.txt).*
-
 ## Running pretraining and SFT in the cloud
 
 I trained on one RTX 4090 with about 24 GB of VRAM, a PyTorch 2.6-series image, and Python 3.12. Before the full run, I checked that `torch.cuda.is_available()` was true, the data files existed, disk space was sufficient, and a short trial run made progress. Pretraining and SFT used the upstream mini datasets; I did not upload those large files to my public learning repository.

@@ -32,10 +32,6 @@ Full SFT 的样本则是带 `user`、`assistant` 等角色的对话。模型仍�
 
 每个 block 里有注意力和前馈网络。这个版本默认是 8 个 Query 头、4 个 Key/Value 头；Q、K 使用 RoPE 位置编码，注意力带因果约束，当前位置不能“偷看”后面的 token。RMSNorm、残差连接和前馈网络共同构成一次 block 变换。理解这些模块时，我发现先追踪张量形状比上来背公式更有效：`[batch, seq]` 的 ID 变为 `[batch, seq, hidden]`，最后成为 `[batch, seq, vocab]` 的 logits。我也把这个观察做成了一个 [CPU 张量形状实验](https://github.com/yuanjuju/minimind-learning/blob/main/learning/inspect_model_shapes.py)；它用随机初始化的微型模型运行，不需要下载正式权重。
 
-![MiniMind Dense 模型结构示意图：输入嵌入、GQA、前馈网络与输出](/images/minimind-dense-structure.jpg)
-
-*图源：[MiniMind 原作者仓库](https://github.com/jingyaogong/minimind/blob/7a9137d2e90294df80ce9178b89e82657e19f5a7/images/LLM-structure.jpg)，沿用 [Apache-2.0 许可](/images/minimind-dense-structure-LICENSE.txt)。*
-
 ## 在云端跑通预训练与 SFT
 
 训练环境是一张约 24 GB 显存的 RTX 4090，使用 PyTorch 2.6 系列镜像和 Python 3.12。正式训练前我先确认 `torch.cuda.is_available()` 为真、数据文件存在、磁盘空间够用，也用短时试跑检查脚本能向前训练。预训练和 SFT 使用的是上游提供的 mini 数据文件；它们没有被上传到我的公开学习仓库。
