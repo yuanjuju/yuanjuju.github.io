@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LocaleProvider } from "@/components/LocaleProvider";
-import { ParticleBackground } from "@/components/ParticleBackground";
+import { AmbientBackground } from "@/components/AmbientBackground";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
@@ -36,7 +36,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <LocaleProvider>
-            <ParticleBackground />
+            <AmbientBackground />
             <Navbar />
             <main className="min-h-screen">{children}</main>
             <Footer />

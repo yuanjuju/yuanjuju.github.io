@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden [@media(max-height:500px)]:pt-24 [@media(max-height:500px)]:pb-12"
     >
       <div className="max-w-5xl mx-auto px-6 md:px-10 lg:px-12 relative z-10 text-center">
         <motion.div

@@ -34,8 +34,6 @@
   --nav: rgb(255 255 255 / 0.94);
   --card-shadow: 0 4px 24px rgb(28 48 84 / 0.045);
   --card-shadow-hover: 0 12px 32px rgb(28 48 84 / 0.1);
-  --particle-rgb: 61, 94, 163;
-  --particle-opacity: 0.55;
   --selection-bg: #3459bd;
   --selection-text: #ffffff;
   --article-surface: var(--surface);
@@ -69,8 +67,6 @@
   --nav: rgb(15 17 23 / 0.94);
   --card-shadow: 0 4px 24px rgb(0 0 0 / 0.12);
   --card-shadow-hover: 0 12px 32px rgb(0 0 0 / 0.28);
-  --particle-rgb: 113, 151, 242;
-  --particle-opacity: 0.85;
   --selection-bg: #93aeff;
   --selection-text: #101b34;
   --article-surface: #171b24;

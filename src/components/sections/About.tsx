@@ -46,7 +46,7 @@ const skillCategories = [
 export function About() {
   const isEnglish = useLocale() === "en";
   return (
-    <SectionWrapper id="about" className="py-24 md:py-32">
+    <SectionWrapper id="about" className="overflow-x-clip py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-6 md:px-10 lg:px-12">
         <div className="grid md:grid-cols-5 gap-12 md:gap-16">
           {/* Left column: avatar + personal info */}
