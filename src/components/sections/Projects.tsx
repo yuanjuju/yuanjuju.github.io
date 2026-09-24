@@ -41,6 +41,20 @@ const projects = [
     tags: ["C++", "游戏开发"],
     gitee: "https://gitee.com/yuan-jiajunun/pvz-self-created",
   },
+  {
+    title: "project-planner｜Codex 插件与 Skill",
+    description:
+      "把项目想法拆解为 agents.md 与分阶段规格，配套结构校验器、测试和 CI，让自然语言规划输出拥有可检查的目录、字段与交付边界。",
+    tags: ["Codex", "Agent Workflow", "Validation", "Testing", "CI"],
+    github: "https://github.com/yuanjuju/project-planner",
+  },
+  {
+    title: "QuotaForCodex｜macOS 本地工具",
+    description:
+      "使用 Swift 构建菜单栏与 Widget 额度查看工具，优先读取本地状态并适配 app-server 数据路径；仓库包含自动化测试和 CI，不以尚未发生的公证发布或用户规模作为结果。",
+    tags: ["Swift", "macOS", "WidgetKit", "Local-first", "CI"],
+    github: "https://github.com/yuanjuju/QuotaForCodex",
+  },
 ];
 
 export function Projects() {

@@ -27,6 +27,16 @@ export const english = {
       description: "A simplified Plants vs. Zombies remake in C++, recreating the classic gameplay with multiple plant and zombie types, custom game logic and collision detection.",
       tags: ["C++", "Game Development"],
     },
+    {
+      title: "project-planner | Codex Plugin & Skill",
+      description: "A structured workflow that turns a project idea into agents.md and phase-by-phase specifications, backed by a validator, tests and CI so natural-language planning has checkable structure and delivery boundaries.",
+      tags: ["Codex", "Agent Workflow", "Validation", "Testing", "CI"],
+    },
+    {
+      title: "QuotaForCodex | Local macOS Utility",
+      description: "A Swift menu-bar and Widget utility that reads local usage state first and adapts to app-server data paths. The repository includes automated tests and CI without claiming notarized distribution or an unverified user base.",
+      tags: ["Swift", "macOS", "WidgetKit", "Local-first", "CI"],
+    },
   ],
   timeline: [
     { title: "A new role, a new beginning", description: "Staying at Ocean University of China for a master's degree and continuing to explore computer vision and remote sensing." },
